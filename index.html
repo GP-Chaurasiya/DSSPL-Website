@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSSPL-Screen Nahi Green</title>
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <img src="DSSPL_LOGO.png" alt="DSSPL Logo" class="logo">
+            <div class="logo-flip">
+                <div class="logo-inner">
+                    <div class="logo-front">
+                        <img src="dsvv Logo .png" alt="Front Logo">
+                    </div>
+                    <div class="logo-back">
+                        <img src="DSSPL-logo.png" alt="Back Logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+                <i class="ri-moon-line"></i>
+            </button>
+            <div class="search-container">
+                <i class="ri-search-line search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search...">
+            </div>
+            <a href="https://dsspl-registration.netlify.app/" target="_blank">
+                <button onclick="openRegistration()" class="register-btn">Register Now</button>
+            </a>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="ri-home-5-line"></i> Home</a></li>
+            <li><a href="dals.html"><i class="ri-team-line"></i> Dals</a></li>
+            <li><a href="sports.html"><i class="ri-football-line"></i> Sports</a></li>
+            <li><a href="schedule.html"><i class="ri-calendar-event-line"></i> Schedule</a></li>
+            <li><a href="results.html"><i class="ri-broadcast-line"></i> Live Score</a></li>
+            <li><a href="leaderboard.html"><i class="ri-trophy-line"></i> Leaderboard</a></li>
+            <li><a href="gallery.html"><i class="ri-image-line"></i> Gallery</a></li>
+            <li><a href="about.html"><i class="ri-information-line"></i> About</a></li>
+        </ul>
+    </nav>
+    <section class="slider">
+        <div class="slides">
+            <div class="slide active">
+                <img src="images/poster1.png" alt="DSSPL Poster 1">
+            </div>
+            <div class="slide">
+                <img src="images/poster2.png" alt="DSSPL Poster 2">
+            </div>
+            <div class="slide">
+                <img src="images/poster3.png" alt="DSSPL Poster 3">
+            </div>
+        </div>
+        <div class="countdown-wrapper">
+            <h3>OPENING CEREMONY IN</h3>
+            <div class="countdown-container">
+                <div class="time-box">
+                    <div class="time-header">DAYS</div>
+                    <div class="time-body">
+                        <span id="days">09</span>
+                        <div class="crease"></div>
+                    </div>
+                </div>
+                <div class="separator"></div>
+                <div class="time-box">
+                    <div class="time-header">HRS</div>
+                    <div class="time-body">
+                        <span id="hours">14</span>
+                        <div class="crease"></div>
+                    </div>
+                </div>
+                <div class="separator"></div>
+                <div class="time-box">
+                    <div class="time-header">MINS</div>
+                    <div class="time-body">
+                        <span id="minutes">32</span>
+                        <div class="crease"></div>
+                    </div>
+                </div>
+                <div class="separator"></div>
+                <div class="time-box">
+                    <div class="time-header">SECS</div>
+                    <div class="time-body">
+                        <span id="seconds">18</span>
+                        <div class="crease"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Dots OUTSIDE slides -->
+        <div class="dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <section class="match-section">
+    <!-- Upcoming Match -->
+    <div class="match-card upcoming" id="event-card">
+
+        <div class="card-title">
+            <i class="ri-calendar-event-line"></i>
+            <h3>UPCOMING MATCH</h3>
+        </div>
+
+        <div class="match-time">
+            <span>12 June 2026</span>
+            <span>04:00 PM</span>
+            <span>Main Ground</span>
+        </div>
+
+        <div class="teams">
+
+            <div class="team">
+                <img src="Adarsh dal.jpg">
+                <p>Adarsh Dal</p>
+            </div>
+
+            <div class="vs">VS</div>
+
+            <div class="team">
+                <img src="Sankalp dal.jpg">
+                <p>Sankalp Dal</p>
+            </div>
+        </div>
+
+        <div class="match-info">
+            Volleyball • Main Ground A
+        </div>
+        <button class="schedule-btn">
+            View Full Schedule →
+        </button>
+    </div>
+
+    <!-- Live Match -->
+    <div class="match-card live" id="live-score">
+        <div class="live-top">
+            <div class="card-title white">
+                <i class="ri-broadcast-line"></i>
+                <h3>LIVE MATCH</h3>
+            </div>
+            <span class="live-badge">LIVE</span>
+        </div>
+        <div class="live-sport">
+            Volleyball • 2nd Set
+        </div>
+        <div class="live-score-area">
+            <div class="team">
+                <img src="Chanakya dal.jpg">
+                <p>Chanakya Dal</p>
+            </div>
+            <div class="score">
+                2 : 1
+            </div>
+            <div class="team">
+                <img src="Vijay dal.jpg">
+                <p>Vijay Dal</p>
+            </div>
+        </div>
+        <div class="set-score">
+            <div>25-21</div>
+            <div>18-15</div>
+            <div>--</div>
+        </div>
+        <div class="live-footer">
+            🟢 Match In Progress • 15:32
+        </div>
+        <button class="watch-btn">
+            Watch Live Score
+        </button>
+    </div>
+
+    <!-- Latest Results -->
+    <div class="match-card results">
+        <div class="results-top">
+            <h3>LATEST RESULTS</h3>
+            <span style="cursor: pointer;" onclick="window.location.href='results.html'">View All</span>
+        </div>
+        <div id="results-list">
+            <div class="result-item">
+                <div>
+                    <h4>Management vs Journalism</h4>
+                    <p>Football • 10 June 2026</p>
+                </div>
+                <span class="result-score green">
+                    3-1
+                </span>
+            </div>
+            <div class="result-item">
+                <div>
+                    <h4>Yogic Science vs Biotechnology</h4>
+                    <p>Tug of War • 10 June 2026</p>
+                </div>
+                <span class="result-score green">
+                    2-0
+                </span>
+            </div>
+
+            <div class="result-item">
+                <div>
+                    <h4>Computer Science vs Psychology</h4>
+                    <p>Basketball • 9 June 2026</p>
+                </div>
+                <span class="result-score green">
+                    78-65
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="departments-container">
+    <!-- Header Section -->
+    <div class="departments-header">
+      <div class="header-title">
+        <!-- Changed to a group/flag style icon suitable for 'Dals' -->
+        <span class="title-icon">🚩</span> 
+        <h2>OUR 7 DALS</h2>
+      </div>
+    </div>
+
+    <!-- Cards Grid (7 Items) -->
+    <div class="cards-grid">
+    <!-- Adarsh Dal -->
+    <div class="department-card">
+        <div class="icon-wrapper">
+            <img src="Adarsh dal.jpg" alt="Adarsh Dal">
+        </div>
+        <h3>Adarsh Dal</h3>
+        <p class="player-count">
+            <span id="adarsh-count">0</span> Players 👥
+        </p>
+    </div>
+
+    <!-- Sankalp Dal -->
+    <div class="department-card">
+        <div class="icon-wrapper">
+            <img src="Sankalp dal.jpg" alt="Sankalp Dal">
+        </div>
+        <h3>Sankalp Dal</h3>
+        <p class="player-count">
+            <span id="sankalp-count">0</span> Players 👥
+        </p>
+    </div>
+
+    <!-- Chanakya Dal -->
+    <div class="department-card">
+        <div class="icon-wrapper">
+            <img src="Chanakya dal.jpg" alt="Chanakya Dal">
+        </div>
+        <h3>Chanakya Dal</h3>
+        <p class="player-count">
+            <span id="chanakya-count">0</span> Players 👥
+        </p>
+    </div>
+
+    <!-- Vijay Dal -->
+    <div class="department-card">
+        <div class="icon-wrapper">
+            <img src="Vijay dal.jpg" alt="Vijay Dal">
+        </div>
+        <h3>Vijay Dal</h3>
+        <p class="player-count">
+            <span id="vijay-count">0</span> Players 👥
+        </p>
+    </div>
+
+    <!-- Utkarsh Dal -->
+    <div class="department-card">
+        <div class="icon-wrapper">
+            <img src="Utkarsh dal.jpg" alt="Utkarsh Dal">
+        </div>
+        <h3>Utkarsh Dal</h3>
+        <p class="player-count">
+            <span id="utkarsh-count">0</span> Players 👥
+        </p>
+    </div>
+
+    <!-- Rakshak Dal -->
+    <div class="department-card">
+        <div class="icon-wrapper">
+            <img src="rakshak dal.jpg" alt="Rakshak Dal">
+        </div>
+        <h3>Rakshak Dal</h3>
+        <p class="player-count">
+            <span id="rakshak-count">0</span> Players 👥
+        </p>
+    </div>
+
+    <!-- Shaurya Dal -->
+    <div class="department-card">
+        <div class="icon-wrapper">
+            <img src="Shaurya dal.jpg" alt="Shaurya Dal">
+        </div>
+        <h3>Shaurya Dal</h3>
+        <p class="player-count">
+            <span id="shaurya-count">0</span> Players 👥
+        </p>
+    </div>
+</div>
+</section>
+
+<div class="sports-section">
+    <div class="sports-header">
+        <span class="sports-title-icon"><i class="ri-medal-fill"></i></span>
+        <h2>SPORTS CATEGORIES</h2>
+    </div>
+
+    <div class="sports-grid">
+        <div class="sport-card">
+            <i class="ri-basketball-line"></i>
+            <p>Basketball</p>
+        </div>
+
+        <div class="sport-card">
+            <i class="ri-football-line"></i>
+            <p>Football</p>
+        </div>
+
+        <div class="sport-card">
+            <i class="ri-base-station-line"></i>
+            <p>Cricket</p>
+        </div>
+
+        <div class="sport-card">
+            <i class="ri-circle-line"></i>
+            <p>Volleyball</p>
+        </div>
+
+        <div class="sport-card">
+            <i class="ri-flight-takeoff-line"></i>
+            <p>Badminton</p>
+        </div>
+
+        <div class="sport-card">
+            <i class="ri-ping-pong-line"></i>
+            <p>Table Tennis</p>
+        </div>
+
+        <div class="sport-card">
+            <i class="ri-run-line"></i>
+            <p>Athletics (100m)</p>
+        </div>
+
+        <div class="sport-card">
+            <i class="ri-run-line"></i>
+            <p>Athletics (400m)</p>
+        </div>
+
+        <div class="sport-card">
+            <i class="ri-run-line"></i>
+            <p>Relay Race</p>
+        </div>
+
+        <div class="sport-card">
+            <i class="ri-group-2-line"></i>
+            <p>Kho-Kho</p>
+        </div>
+
+        <div class="sport-card">
+            <i class="ri-gamepad-line"></i>
+            <p>Chess</p>
+        </div>
+
+        <div class="sport-card">
+            <i class="ri-billiards-line"></i>
+            <p>Carrom</p>
+        </div>
+
+        <div class="sport-card">
+            <i class="ri-group-line"></i>
+            <p>Tug of War</p>
+        </div>
+
+        <div class="sport-card">
+            <i class="ri-arrow-up-circle-line"></i>
+            <p>Long Jump</p>
+        </div>
+
+        <div class="sport-card">
+            <i class="ri-send-plane-line"></i>
+            <p>Javelin Throw</p>
+        </div>
+
+        <div class="sport-card">
+            <i class="ri-record-circle-line"></i>
+            <p>Discus Throw</p>
+        </div>
+
+        <div class="sport-card">
+            <i class="ri-focus-3-line"></i>
+            <p>Shot Put</p>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard">
+  <!-- LEADERBOARD -->
+  <div class="card leaderboard-card">
+    <div class="card-header">
+      <div>
+        <i class="ri-trophy-fill"></i>
+        <strong>LEADERBOARD</strong>
+      </div>
+      <span>Overall Ranking</span>
+    </div>
+    <div class="leaderboard">
+      <div class="leaderboard-head">
+        <span>Rank</span>
+        <span>Team</span>
+        <span>Record</span>
+        <span>Pts</span>
+      </div>
+      <div class="row top">
+        <span class="rank"><i class="ri-medal-fill"></i>1</span>
+        <span class="leaderboard-team">Digital Marketing</span>
+        <span class="stats">6W - 1L</span>
+        <span class="points"><i class="ri-star-fill"></i>10</span>
+      </div>
+
+      <div class="row">
+        <span class="rank"><i class="ri-medal-line"></i>2</span>
+        <span class="leaderboard-team">Management</span>
+        <span class="stats">4W - 2L</span>
+        <span class="points"><i class="ri-star-fill"></i>8</span>
+      </div>
+
+      <div class="row">
+        <span class="rank"><i class="ri-medal-line"></i>3</span>
+        <span class="leaderboard-team">Psychology</span>
+        <span class="stats">3W - 3L</span>
+        <span class="points"><i class="ri-star-fill"></i>6</span>
+      </div>
+
+      <div class="row">
+        <span class="rank"><i class="ri-shield-star-line"></i>4</span>
+        <span class="leaderboard-team">Yogic Science</span>
+        <span class="stats">3W - 3L</span>
+        <span class="points"><i class="ri-star-fill"></i>6</span>
+      </div>
+    </div>
+    <button class="btn">View Full Leaderboard <i class="ri-arrow-right-line"></i></button>
+  </div>
+
+  <!-- TOP PERFORMERS -->
+  <div class="card performers-card">
+    <div class="card-header">
+      <div>
+        <i class="ri-flashlight-fill"></i>
+        <strong>TOP PERFORMERS</strong>
+      </div>
+      <span>This Week</span>
+    </div>
+
+    <div class="players">
+
+      <div class="player">
+        <img src="Adarsh dal.jpg" alt="Aarav Sharma">
+        <span class="badge orange"><i class="ri-football-line"></i>Top Scorer</span>
+        <h3>Aarav Sharma</h3>
+        <p>Digital Marketing</p>
+        <b><i class="ri-bar-chart-fill"></i>58 Points</b>
+      </div>
+
+      <div class="player">
+        <img src="Sankalp dal.jpg" alt="Meera Singh">
+        <span class="badge purple"><i class="ri-award-fill"></i>Player of the Match</span>
+        <h3>Meera Singh</h3>
+        <p>Psychology</p>
+        <b><i class="ri-vip-crown-fill"></i>4 Awards</b>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="gallery-wrapper">
+    <div class="gallery-container">
+        <h2 class="gallery-title">Gallery Highlights</h2>
+    </div>
+
+  <div class="gallery-track">
+
+    <div class="gallery-card" onclick="openPreview('img1.jpg','image')">
+      <img src="img1.jpg">
+    </div>
+
+    <div class="gallery-card" onclick="openPreview('video1.mp4','video')">
+      <img src="video-thumb1.jpg">
+    </div>
+
+    <div class="gallery-card" onclick="openPreview('img2.jpg','image')">
+      <img src="img2.jpg">
+    </div>
+
+    <div class="gallery-card" onclick="openPreview('img2.jpg','image')">
+      <img src="img2.jpg">
+    </div>
+
+    <div class="gallery-card" onclick="openPreview('img2.jpg','image')">
+      <img src="img2.jpg">
+    </div>
+
+    <div class="gallery-card" onclick="openPreview('img2.jpg','image')">
+      <img src="img2.jpg">
+    </div>
+
+    <div class="gallery-card" onclick="openPreview('img2.jpg','image')">
+      <img src="img2.jpg">
+    </div>
+
+    <div class="gallery-card" onclick="openPreview('img2.jpg','image')">
+      <img src="img2.jpg">
+    </div>
+
+    <div class="gallery-card" onclick="openPreview('img2.jpg','image')">
+      <img src="img2.jpg">
+    </div>
+
+    <div class="gallery-card" onclick="openPreview('video2.mp4','video')">
+      <img src="video-thumb2.jpg">
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- MINI PLAYER -->
+<div class="mini-player" id="miniPlayer">
+  <span class="close-btn" onclick="closePreview()">✖</span>
+  <img id="miniImg" class="hidden">
+  <video id="miniVideo" class="hidden" controls autoplay></video>
+</div>
+
+<button id="topBtn" title="Go to top">↑</button>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-box">
+            <h3>About Us</h3>
+            <p>Dev Sanskriti Vishwavidyalaya, Haridwar - 249411</p>
+        </div>
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <a href="#">Home</a>
+            <a href="#">Gallery</a>
+            <a href="#">Leaderboard</a>
+            <a href="#">Dals</a>
+        </div>
+        <div class="footer-box">
+            <h3>Contact</h3>
+            <p>Email: dsvv.ac.in</p>
+            <p>Phone: +91 00000 00000</p>
+        </div>
+        <div class="footer-box">
+            <h3>Follow Us</h3>
+            <div class="social-icons">
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © DSSPL-2026 | All Rights Reserved
+    </div>
+</footer>
+
+<script>
+function openPreview(src, type){
+
+    const player = document.getElementById("miniPlayer");
+    const img = document.getElementById("miniImg");
+    const video = document.getElementById("miniVideo");
+
+    player.style.display = "block";
+
+    if(type === "video"){
+        img.classList.add("hidden");
+        video.classList.remove("hidden");
+
+        video.src = src;
+        video.play();
+    }
+    else{
+        video.classList.add("hidden");
+        img.classList.remove("hidden");
+
+        img.src = src;
+    }
+}
+
+function closePreview(){
+    const player = document.getElementById("miniPlayer");
+    const video = document.getElementById("miniVideo");
+
+    video.pause();
+    video.src = "";
+
+    player.style.display = "none";
+}
+</script>
+
+    <script>
+        const themeToggle = document.querySelector('.theme-toggle');
+
+        function updateThemeIcon(theme) {
+            if (!themeToggle) return;
+            const icon = themeToggle.querySelector('i');
+            if (icon) {
+                icon.className = theme === 'light' ? 'ri-moon-line' : 'ri-sun-line';
+            }
+        }
+
+        function applyTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            updateThemeIcon(theme);
+        }
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.body.getAttribute('data-theme') || 'light';
+                applyTheme(currentTheme === 'light' ? 'dark' : 'light');
+            });
+        }
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        const searchIcon = document.querySelector('.search-icon');
+
+        if (searchInput) {
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch(searchInput.value);
+                }
+            });
+        }
+
+        if (searchIcon && searchInput) {
+            searchIcon.addEventListener('click', () => {
+                performSearch(searchInput.value);
+            });
+        }
+
+        function performSearch(query) {
+            if (query.trim()) {
+                console.log('Searching for:', query);
+                // Add your search logic here
+            }
+        }
+
+        function openRegistration() {
+            window.open(
+                "https://dsspl-registration.netlify.app/",
+                "_blank"
+            );
+        }
+    </script>
+   <script>
+const slides = document.querySelector('.slides');
+const slide = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+
+let index = 0;
+const totalSlides = slide.length;
+let autoSlide;
+
+// Update Slider
+function updateSlider() {
+
+    slides.style.transform =
+    `translateX(-${index * 100}%)`;
+
+    // Active Dot
+    dots.forEach(dot =>
+        dot.classList.remove('active')
+    );
+
+    dots[index].classList.add('active');
+}
+
+// Next Slide
+function nextSlide() {
+    index++;
+
+    if(index >= totalSlides){
+        index = 0;
+    }
+
+    updateSlider();
+}
+
+// Auto Slide
+function startSlider(){
+    autoSlide = setInterval(nextSlide, 3000);
+}
+
+// Stop on Hover
+function stopSlider(){
+    clearInterval(autoSlide);
+}
+
+// Dot Click
+dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+        index = i;
+        updateSlider();
+    });
+});
+
+const slider = document.querySelector('.slider');
+
+if (slider && totalSlides) {
+    slider.addEventListener('mouseenter', stopSlider);
+    slider.addEventListener('mouseleave', startSlider);
+    startSlider();
+}
+</script>
+
+<script>
+
+// Set Event Date
+const targetDate =
+new Date("August 16, 2026 00:00:00").getTime();
+
+function updateCountdown(){
+
+    const now = new Date().getTime();
+    const gap = targetDate - now;
+
+    const days =
+    Math.floor(gap / (1000 * 60 * 60 * 24));
+
+    const hours =
+    Math.floor(
+        (gap % (1000 * 60 * 60 * 24)) /
+        (1000 * 60 * 60)
+    );
+
+    const minutes =
+    Math.floor(
+        (gap % (1000 * 60 * 60)) /
+        (1000 * 60)
+    );
+
+    const seconds =
+    Math.floor(
+        (gap % (1000 * 60)) /
+        1000
+    );
+
+    document.getElementById("days")
+    .innerText = days;
+
+    document.getElementById("hours")
+    .innerText = hours;
+
+    document.getElementById("minutes")
+    .innerText = minutes;
+
+    document.getElementById("seconds")
+    .innerText = seconds;
+}
+
+setInterval(updateCountdown, 1000);
+
+updateCountdown();
+
+</script>
+
+<script>
+const topBtn = document.getElementById("topBtn");
+
+// show button on scroll
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 200) {
+        topBtn.style.display = "block";
+    } else {
+        topBtn.style.display = "none";
+    }
+});
+
+// scroll to top
+topBtn.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
+
+<script>
+const SHEET_URL =
+"https://opensheet.elk.sh/1wko8nor4TPBssNGKIK5283AJ-zZ-Yj394v4ZcUFXjRU/Sheet1";
+
+async function updateDalCounts() {
+    try {
+        const response = await fetch(SHEET_URL);
+        const data = await response.json();
+
+        // Reset counts
+        const counts = {
+            "adarsh dal": 0,
+            "sankalp dal": 0,
+            "chanakya dal": 0,
+            "vijay dal": 0,
+            "utkarsh dal": 0,
+            "rakshak dal": 0,
+            "shaurya dal": 0
+        };
+
+        // Count players from sheet
+        data.forEach(row => {
+            const dal = row["Dal"]?.trim().toLowerCase();
+
+            if (counts.hasOwnProperty(dal)) {
+                counts[dal]++;
+            }
+        });
+
+        // Update UI
+        document.getElementById("adarsh-count").textContent =
+            counts["adarsh dal"];
+
+        document.getElementById("sankalp-count").textContent =
+            counts["sankalp dal"];
+
+        document.getElementById("chanakya-count").textContent =
+            counts["chanakya dal"];
+
+        document.getElementById("vijay-count").textContent =
+            counts["vijay dal"];
+
+        document.getElementById("utkarsh-count").textContent =
+            counts["utkarsh dal"];
+
+        document.getElementById("rakshak-count").textContent =
+            counts["rakshak dal"];
+
+        document.getElementById("shaurya-count").textContent =
+            counts["shaurya dal"];
+
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+// Load instantly
+updateDalCounts();
+
+// Refresh every 5 seconds
+setInterval(updateDalCounts, 5000);
+</script>
+</body>
+</html>
