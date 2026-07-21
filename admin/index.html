@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSSPL Admin Dashboard</title>
+  <link rel="icon" type="image/x-icon" href="../favicon/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css">
+  <style>
+    :root {
+      /* Light mode palette */
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --border-color: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --primary: #ffbc01;
+      --primary-rgb: 255, 188, 1;
+      --primary-hover: #e0a500;
+      --accent: #003e8a;
+      --success: #10b981;
+      --danger: #ef4444;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+      --sidebar-width: 260px;
+    }
+
+    [data-theme="dark"] {
+      /* Dark mode palette */
+      --bg-primary: #0b0f19;
+      --bg-secondary: #111827;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #ffbc01;
+      --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      height: 100vh;
+      display: flex;
+      overflow: hidden;
+    }
+
+    /* Sidebar Layout */
+    aside {
+      width: var(--sidebar-width);
+      background-color: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      flex-shrink: 0;
+      z-index: 10;
+      transition: transform 0.3s ease-in-out, width 0.3s;
+    }
+
+    .sidebar-header {
+      padding: 1.5rem;
+      border-b: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .sidebar-brand img {
+      height: 40px;
+    }
+
+    .sidebar-menu {
+      flex: 1;
+      padding: 1.5rem 1rem;
+      overflow-y: auto;
+      list-style: none;
+    }
+
+    .menu-item {
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+    }
+
+    .menu-btn:hover {
+      background-color: rgba(var(--primary-rgb), 0.08);
+      color: var(--text-main);
+    }
+
+    .menu-btn.active {
+      background-color: var(--primary);
+      color: #000;
+      font-weight: 600;
+    }
+
+    .sidebar-footer {
+      padding: 1.5rem 1rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .user-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .user-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .user-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .user-name {
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .user-role {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .btn-logout {
+      width: 100%;
+      padding: 10px;
+      background: none;
+      border: 1px solid var(--danger);
+      border-radius: 8px;
+      color: var(--danger);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+    }
+
+    .btn-logout:hover {
+      background-color: var(--danger);
+      color: #fff;
+    }
+
+    /* Main Area */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* Header */
+    header {
+      height: 70px;
+      background-color: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      flex-shrink: 0;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    .header-title h2 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: var(--text-main);
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-color);
+    }
+
+    .theme-toggle:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Content Area */
+    .content-viewport {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cards */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stat-card-left h3 {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .stat-card-left .stat-number {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .stat-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background-color: rgba(var(--primary-rgb), 0.1);
+      color: var(--accent);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+    }
+
+    /* Tables & Lists */
+    .section-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .section-header h3 {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 14px;
+    }
+
+    th {
+      font-weight: 600;
+      color: var(--text-muted);
+      background-color: rgba(255, 255, 255, 0.01);
+    }
+
+    tr:hover td {
+      background-color: rgba(255, 255, 255, 0.01);
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-live {
+      background-color: rgba(239, 68, 68, 0.1);
+      color: var(--danger);
+      animation: pulse 2s infinite;
+    }
+
+    .badge-scheduled {
+      background-color: rgba(255, 188, 1, 0.1);
+      color: #d69e2e;
+    }
+
+    .badge-completed {
+      background-color: rgba(16, 185, 129, 0.1);
+      color: var(--success);
+    }
+
+    .badge-paused {
+      background-color: rgba(100, 116, 139, 0.1);
+      color: var(--text-muted);
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.6; }
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 10px 18px;
+      background-color: var(--primary);
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.06);
+    }
+
+    .btn-danger {
+      background-color: var(--danger);
+      color: #fff;
+    }
+
+    .btn-danger:hover {
+      background-color: #dc2626;
+    }
+
+    .btn-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background: none;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .btn-icon:hover {
+      color: var(--text-main);
+      background-color: rgba(255, 255, 255, 0.03);
+    }
+
+    /* Forms */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      padding: 10px 14px;
+      background-color: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    /* Modal dialog */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .modal-content {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 600px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      animation: modalSlide 0.3s ease;
+    }
+
+    @keyframes modalSlide {
+      from { transform: translateY(-30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    /* Live Score Control Hub styling */
+    .live-control-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .live-team-control {
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.01);
+    }
+
+    .live-team-control h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .live-score-display {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--accent);
+      margin: 15px 0;
+    }
+
+    .live-score-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-score-adjust {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.2s;
+    }
+
+    .btn-score-adjust:hover {
+      background-color: var(--primary);
+      color: #000;
+      border-color: var(--primary);
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      aside {
+        position: absolute;
+        transform: translateX(-100%);
+      }
+      aside.open {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body data-theme="dark">
+
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <div class="sidebar-header">
+      <a href="#" class="sidebar-brand">
+        <img src="../DSSPL_LOGO.png" alt="DSSPL Logo">
+        <span>DSSPL Admin</span>
+      </a>
+      <button class="menu-toggle" id="closeSidebarBtn">
+        <i class="ri-close-line"></i>
+      </button>
+    </div>
+    
+    <ul class="sidebar-menu">
+      <li class="menu-item" data-access="ALL">
+        <button class="menu-btn active" data-tab="dashboard">
+          <i class="ri-dashboard-line"></i>
+          <span>Dashboard</span>
+        </button>
+      </li>
+      <li class="menu-item" data-access="ALL">
+        <button class="menu-btn" data-tab="scoreboard">
+          <i class="ri-dashboard-2-line"></i>
+          <span>Live Scoreboard</span>
+        </button>
+      </li>
+      <li class="menu-item" data-access="ORGANISER">
+        <button class="menu-btn" data-tab="match-control">
+          <i class="ri-broadcast-line"></i>
+          <span>Match Control</span>
+        </button>
+      </li>
+      <li class="menu-item" data-access="ORGANISER">
+        <button class="menu-btn" data-tab="scheduling">
+          <i class="ri-calendar-event-line"></i>
+          <span>Scheduling</span>
+        </button>
+      </li>
+      <li class="menu-item" data-access="ORGANISER">
+        <button class="menu-btn" data-tab="teams">
+          <i class="ri-team-line"></i>
+          <span>Team Management</span>
+        </button>
+      </li>
+      <li class="menu-item" data-access="CREATOR">
+        <button class="menu-btn" data-tab="news">
+          <i class="ri-news-line"></i>
+          <span>News & Posts</span>
+        </button>
+      </li>
+      <li class="menu-item" data-access="MEDIA">
+        <button class="menu-btn" data-tab="media">
+          <i class="ri-image-line"></i>
+          <span>Media Gallery</span>
+        </button>
+      </li>
+      <li class="menu-item" data-access="SUPER_ADMIN">
+        <button class="menu-btn" data-tab="users">
+          <i class="ri-user-settings-line"></i>
+          <span>User Accounts</span>
+        </button>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar" id="avatarName">AD</div>
+        <div class="user-info">
+          <div class="user-name" id="profileName">Administrator</div>
+          <div class="user-role" id="profileRole">SUPER ADMIN</div>
+        </div>
+      </div>
+      <button class="btn-logout" id="logoutBtn">
+        <i class="ri-logout-box-r-line"></i>
+        <span>Sign Out</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <main>
+    <header>
+      <div class="header-left">
+        <button class="menu-toggle" id="openSidebarBtn">
+          <i class="ri-menu-line"></i>
+        </button>
+        <div class="header-title">
+          <h2 id="viewTitle">Dashboard Overview</h2>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle Theme">
+          <i class="ri-sun-line"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="content-viewport">
+
+      <!-- ── TAB: DASHBOARD ── -->
+      <div class="tab-content active" id="tab-dashboard">
+        <div class="dashboard-grid">
+          <div class="stat-card">
+            <div class="stat-card-left">
+              <h3>Live Matches</h3>
+              <div class="stat-number" id="statLiveCount">0</div>
+            </div>
+            <div class="stat-icon" style="background-color: rgba(239, 68, 68, 0.1); color: var(--danger)">
+              <i class="ri-broadcast-line"></i>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-left">
+              <h3>Total Scheduled</h3>
+              <div class="stat-number" id="statScheduledCount">0</div>
+            </div>
+            <div class="stat-icon">
+              <i class="ri-calendar-todo-line"></i>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-left">
+              <h3>Completed Games</h3>
+              <div class="stat-number" id="statCompletedCount">0</div>
+            </div>
+            <div class="stat-icon" style="background-color: rgba(16, 185, 129, 0.1); color: var(--success)">
+              <i class="ri-verified-badge-line"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-header">
+            <h3>Live Scored Matches</h3>
+            <span class="badge badge-live">Realtime Sync</span>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Sport</th>
+                  <th>Match details</th>
+                  <th>Venue</th>
+                  <th>Score</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="dashboardLiveMatchesList">
+                <tr>
+                  <td colspan="6" style="text-align: center; color: var(--text-muted);">No live matches running</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: MATCH CONTROL ── -->
+      <div class="tab-content" id="tab-match-control">
+        <div class="section-card">
+          <div class="section-header">
+            <h3>Scorer Interface Selection</h3>
+            <p style="font-size: 14px; color: var(--text-muted)">Select a live match below to control its scoring values in real-time.</p>
+          </div>
+          <div class="form-group" style="max-width: 400px; margin-bottom: 2rem;">
+            <label for="scorerMatchSelect">Choose Active Match</label>
+            <select id="scorerMatchSelect" class="form-control">
+              <option value="">-- No Active Match Selected --</option>
+            </select>
+          </div>
+
+          <!-- Active Scorer Panel -->
+          <div id="scorerPanel" style="display: none;">
+            <div class="live-control-grid" style="margin-bottom: 2rem;">
+              <!-- Team A -->
+              <div class="live-team-control">
+                <h4 id="scorerTeamAName">Team A</h4>
+                <div class="live-score-display" id="scorerTeamAScore">0</div>
+                <div class="live-score-buttons">
+                  <button class="btn-score-adjust" onclick="adjustScore('A', -1)">-</button>
+                  <button class="btn-score-adjust" onclick="adjustScore('A', 1)">+</button>
+                  <button class="btn-score-adjust" onclick="adjustScore('A', 4)">+4</button>
+                  <button class="btn-score-adjust" onclick="adjustScore('A', 6)">+6</button>
+                </div>
+              </div>
+              
+              <!-- Timer / Status Controls -->
+              <div class="live-team-control" style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 15px;">
+                <div style="font-size: 28px; font-weight: 700;" id="scorerTimer">00:00</div>
+                <div class="live-score-buttons">
+                  <button class="btn btn-secondary" id="scorerStartBtn"><i class="ri-play-line"></i> Start</button>
+                  <button class="btn btn-secondary" id="scorerPauseBtn"><i class="ri-pause-line"></i> Pause</button>
+                  <button class="btn btn-secondary" id="scorerResetTimerBtn"><i class="ri-history-line"></i> Reset</button>
+                </div>
+                <div class="live-score-buttons" style="margin-top: 10px;">
+                  <button class="btn btn-danger" id="scorerCompleteBtn"><i class="ri-checkbox-circle-line"></i> Complete Match</button>
+                </div>
+              </div>
+
+              <!-- Team B -->
+              <div class="live-team-control">
+                <h4 id="scorerTeamBName">Team B</h4>
+                <div class="live-score-display" id="scorerTeamBScore">0</div>
+                <div class="live-score-buttons">
+                  <button class="btn-score-adjust" onclick="adjustScore('B', -1)">-</button>
+                  <button class="btn-score-adjust" onclick="adjustScore('B', 1)">+</button>
+                  <button class="btn-score-adjust" onclick="adjustScore('B', 4)">+4</button>
+                  <button class="btn-score-adjust" onclick="adjustScore('B', 6)">+6</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Detailed Cricket Scoring fields -->
+            <div class="section-card" style="background-color: rgba(255, 255, 255, 0.005); border-color: var(--border-color);">
+              <div class="section-header">
+                <h3>Cricket & Realtime Detailed Metadata</h3>
+              </div>
+              <form id="cricketDetailsForm">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="cricketOvers">Overs Bowled (e.g. 15.2)</label>
+                    <input type="number" step="0.1" id="cricketOvers" value="0.0">
+                  </div>
+                  <div class="form-group">
+                    <label for="cricketWickets">Wickets Down</label>
+                    <input type="number" id="cricketWickets" value="0">
+                  </div>
+                  <div class="form-group">
+                    <label for="cricketBatsman">Current Batsman</label>
+                    <input type="text" id="cricketBatsman" placeholder="A. Sharma *">
+                  </div>
+                  <div class="form-group">
+                    <label for="cricketBowler">Current Bowler</label>
+                    <input type="text" id="cricketBowler" placeholder="R. Singh">
+                  </div>
+                  <div class="form-group">
+                    <label for="cricketRunRate">Run Rate (CRR)</label>
+                    <input type="number" step="0.01" id="cricketRunRate" value="0.00">
+                  </div>
+                  <div class="form-group">
+                    <label for="matchTournament">Tournament / League Name</label>
+                    <input type="text" id="matchTournament" value="DSSPL 2026">
+                  </div>
+                </div>
+                <div class="form-grid">
+                  <div class="form-group" style="grid-column: span 2">
+                    <label for="matchResult">Match Result Description</label>
+                    <input type="text" id="matchResult" placeholder="Chanakya Mandal won by 5 runs">
+                  </div>
+                  <div class="form-group" style="grid-column: span 1">
+                    <label for="matchBanner">Match Banner URL / Image URL</label>
+                    <input type="text" id="matchBanner" placeholder="/images/cricket-banner.png">
+                  </div>
+                </div>
+                <button type="submit" class="btn"><i class="ri-save-line"></i> Save Match Details</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: SCHEDULING ── -->
+      <div class="tab-content" id="tab-scheduling">
+        <div class="section-card">
+          <div class="section-header">
+            <h3>Match Schedule & Fixtures</h3>
+            <button class="btn" id="openNewMatchModalBtn"><i class="ri-add-line"></i> Schedule Match</button>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Sport</th>
+                  <th>Matchup</th>
+                  <th>Venue</th>
+                  <th>Date & Time</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="scheduleMatchesList">
+                <!-- Matches list loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: TEAMS ── -->
+      <div class="tab-content" id="tab-teams">
+        <div class="section-card">
+          <div class="section-header">
+            <h3>Registered Mandals (Teams)</h3>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Abbr</th>
+                  <th>Name</th>
+                  <th>Color Tag</th>
+                  <th>Logo File</th>
+                </tr>
+              </thead>
+              <tbody id="teamsList">
+                <!-- Mandals loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: NEWS & POSTS ── -->
+      <div class="tab-content" id="tab-news">
+        <div class="section-card">
+          <div class="section-header">
+            <h3>Create News Post / Announcement</h3>
+          </div>
+          <form id="newsForm">
+            <div class="form-group" style="margin-bottom: 1.2rem;">
+              <label for="newsTitle">Article Title</label>
+              <input type="text" id="newsTitle" placeholder="Enter post title" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+              <label for="newsContent">Content / Description</label>
+              <textarea id="newsContent" rows="6" placeholder="Enter article body content..." required></textarea>
+            </div>
+            <button type="submit" class="btn"><i class="ri-send-plane-line"></i> Publish News</button>
+          </form>
+        </div>
+
+        <div class="section-card">
+          <div class="section-header">
+            <h3>Recent Published Posts</h3>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Author</th>
+                  <th>Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="newsList">
+                <!-- News loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: MEDIA GALLERY ── -->
+      <div class="tab-content" id="tab-media">
+        <div class="section-card">
+          <div class="section-header">
+            <h3>Upload Media Assets (Gallery / Banner)</h3>
+          </div>
+          <form id="mediaForm" enctype="multipart/form-data">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="mediaFile">Choose File (Image or Video)</label>
+                <input type="file" id="mediaFile" accept="image/*,video/*" required>
+              </div>
+              <div class="form-group">
+                <label for="mediaTitle">Title / Caption</label>
+                <input type="text" id="mediaTitle" placeholder="Main ceremony highlights">
+              </div>
+            </div>
+            <button type="submit" class="btn"><i class="ri-upload-cloud-line"></i> Upload Asset</button>
+          </form>
+        </div>
+
+        <div class="section-card">
+          <div class="section-header">
+            <h3>Uploaded Media Assets</h3>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Asset</th>
+                  <th>Title</th>
+                  <th>Type</th>
+                  <th>URL Path</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody id="mediaList">
+                <!-- Media loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: USERS ── -->
+      <div class="tab-content" id="tab-users">
+        <div class="section-card">
+          <div class="section-header">
+            <h3>User Accounts (Super Admin access)</h3>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Username</th>
+                  <th>Role permissions</th>
+                  <th>Created date</th>
+                </tr>
+              </thead>
+              <tbody id="usersList">
+                <!-- Users list loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: LIVE SCOREBOARD ── -->
+      <div class="tab-content" id="tab-scoreboard" style="height: calc(100vh - 120px); margin: -2rem; padding: 0;">
+        <iframe src="/scoreboard/" style="width: 100%; height: 100%; border: none;" id="scoreboardIframe"></iframe>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ── MODAL: CREATE MATCH ── -->
+  <div class="modal" id="newMatchModal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeNewMatchModalBtn"><i class="ri-close-line"></i></button>
+      <h3 style="margin-bottom: 1.5rem;"><i class="ri-add-line"></i> Schedule New Match</h3>
+      <form id="newMatchForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="matchSport">Sport Category</label>
+            <select id="matchSport" required>
+              <!-- Sports loaded dynamically -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="matchVenue">Venue / Ground</label>
+            <select id="matchVenue" required>
+              <option value="Main Ground">Main Ground</option>
+              <option value="Main Ground A">Main Ground A</option>
+              <option value="Vidyapeeth">Vidyapeeth</option>
+              <option value="Shriram ground">Shriram ground</option>
+              <option value="Gym Hall">Gym Hall</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="matchDalA">Mandal A (Home Team)</label>
+            <select id="matchDalA" required>
+              <!-- Mandals loaded dynamically -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="matchDalB">Mandal B (Away Team)</label>
+            <select id="matchDalB" required>
+              <!-- Mandals loaded dynamically -->
+            </select>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="matchDuration">Duration (minutes)</label>
+            <input type="number" id="matchDuration" value="60">
+          </div>
+          <div class="form-group">
+            <label for="matchIsLive">Set Active Immediately</label>
+            <select id="matchIsLive">
+              <option value="false">No (Scheduled)</option>
+              <option value="true">Yes (Start Live Now)</option>
+            </select>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 1rem;">
+          <button type="button" class="btn btn-secondary" id="cancelNewMatchBtn">Cancel</button>
+          <button type="submit" class="btn">Create Fixture</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Load Socket.IO client script provided dynamically by backend -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -36,19 +36,15 @@
             <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
                 <i class="ri-moon-line"></i>
             </button>
-            <div class="search-container">
-                <i class="ri-search-line search-icon"></i>
-                <input type="text" class="search-input" placeholder="Search...">
-            </div>
-            <a href="https://dsspl-registration.netlify.app/" target="_blank">
-                <button onclick="openRegistration()" class="register-btn">Register Now</button>
+            <a href="https://dsspl-registration.netlify.app/" target="_blank" onclick="event.preventDefault(); showRegisterPopup();">
+                <button class="register-btn">Register Now</button>
             </a>
         </div>
     </header>
     <nav>
         <ul>
             <li><a href="index.html"><i class="ri-home-5-line"></i> Home</a></li>
-            <li><a href="dals.html"><i class="ri-team-line"></i> Dals</a></li>
+            <li><a href="mandals.html"><i class="ri-team-line"></i> Mandals</a></li>
             <li><a href="sports.html"><i class="ri-football-line"></i> Sports</a></li>
             <li><a href="schedule.html"><i class="ri-calendar-event-line"></i> Schedule</a></li>
             <li><a href="results.html"><i class="ri-broadcast-line"></i> Live Score</a></li>
@@ -60,13 +56,7 @@
     <section class="slider">
         <div class="slides">
             <div class="slide active">
-                <img src="images/poster1.png" alt="DSSPL Poster 1">
-            </div>
-            <div class="slide">
-                <img src="images/poster2.png" alt="DSSPL Poster 2">
-            </div>
-            <div class="slide">
-                <img src="images/poster3.png" alt="DSSPL Poster 3">
+                <img src="new_banner.jpg" alt="DSSPL Banner">
             </div>
         </div>
         <div class="countdown-wrapper">
@@ -108,8 +98,6 @@
         <!-- Dots OUTSIDE slides -->
         <div class="dots">
             <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
         </div>
     </section>
 
@@ -131,22 +119,22 @@
         <div class="teams">
 
             <div class="team">
-                <img src="Adarsh dal.jpg">
-                <p>Adarsh Dal</p>
+                <img src="Adarsh mandal.jpg">
+                <p>Adarsh Mandal</p>
             </div>
 
             <div class="vs">VS</div>
 
             <div class="team">
-                <img src="Sankalp dal.jpg">
-                <p>Sankalp Dal</p>
+                <img src="Sankalp mandal.jpg">
+                <p>Sankalp Mandal</p>
             </div>
         </div>
 
         <div class="match-info">
             Volleyball • Main Ground A
         </div>
-        <button class="schedule-btn">
+        <button class="schedule-btn" onclick="window.location.href='schedule.html'">
             View Full Schedule →
         </button>
     </div>
@@ -165,15 +153,15 @@
         </div>
         <div class="live-score-area">
             <div class="team">
-                <img src="Chanakya dal.jpg">
-                <p>Chanakya Dal</p>
+                <img src="Chanakya mandal.jpg">
+                <p>Chanakya Mandal</p>
             </div>
             <div class="score">
                 2 : 1
             </div>
             <div class="team">
-                <img src="Vijay dal.jpg">
-                <p>Vijay Dal</p>
+                <img src="Vijay mandal.jpg">
+                <p>Vijay Mandal</p>
             </div>
         </div>
         <div class="set-score">
@@ -184,7 +172,7 @@
         <div class="live-footer">
             🟢 Match In Progress • 15:32
         </div>
-        <button class="watch-btn">
+        <button class="watch-btn" onclick="window.location.href='results.html'">
             Watch Live Score
         </button>
     </div>
@@ -226,97 +214,98 @@
             </div>
         </div>
     </div>
+    </section>
 
     <div class="departments-container">
     <!-- Header Section -->
     <div class="departments-header">
       <div class="header-title">
-        <!-- Changed to a group/flag style icon suitable for 'Dals' -->
+        <!-- Changed to a group/flag style icon suitable for 'Mandals' -->
         <span class="title-icon">🚩</span> 
-        <h2>OUR 7 DALS</h2>
+        <h2>OUR 7 MANDALS</h2>
       </div>
     </div>
 
     <!-- Cards Grid (7 Items) -->
     <div class="cards-grid">
-    <!-- Adarsh Dal -->
+    <!-- Adarsh Mandal -->
     <div class="department-card">
         <div class="icon-wrapper">
-            <img src="Adarsh dal.jpg" alt="Adarsh Dal">
+            <img src="Adarsh mandal.jpg" alt="Adarsh Mandal">
         </div>
-        <h3>Adarsh Dal</h3>
+        <h3>Adarsh Mandal</h3>
         <p class="player-count">
             <span id="adarsh-count">0</span> Players 👥
         </p>
     </div>
 
-    <!-- Sankalp Dal -->
+    <!-- Sankalp Mandal -->
     <div class="department-card">
         <div class="icon-wrapper">
-            <img src="Sankalp dal.jpg" alt="Sankalp Dal">
+            <img src="Sankalp mandal.jpg" alt="Sankalp Mandal">
         </div>
-        <h3>Sankalp Dal</h3>
+        <h3>Sankalp Mandal</h3>
         <p class="player-count">
             <span id="sankalp-count">0</span> Players 👥
         </p>
     </div>
 
-    <!-- Chanakya Dal -->
+    <!-- Chanakya Mandal -->
     <div class="department-card">
         <div class="icon-wrapper">
-            <img src="Chanakya dal.jpg" alt="Chanakya Dal">
+            <img src="Chanakya mandal.jpg" alt="Chanakya Mandal">
         </div>
-        <h3>Chanakya Dal</h3>
+        <h3>Chanakya Mandal</h3>
         <p class="player-count">
             <span id="chanakya-count">0</span> Players 👥
         </p>
     </div>
 
-    <!-- Vijay Dal -->
+    <!-- Vijay Mandal -->
     <div class="department-card">
         <div class="icon-wrapper">
-            <img src="Vijay dal.jpg" alt="Vijay Dal">
+            <img src="Vijay mandal.jpg" alt="Vijay Mandal">
         </div>
-        <h3>Vijay Dal</h3>
+        <h3>Vijay Mandal</h3>
         <p class="player-count">
             <span id="vijay-count">0</span> Players 👥
         </p>
     </div>
 
-    <!-- Utkarsh Dal -->
+    <!-- Vivekanand Mandal -->
     <div class="department-card">
         <div class="icon-wrapper">
-            <img src="Utkarsh dal.jpg" alt="Utkarsh Dal">
+            <img src="Vivekanand mandal.jpg" alt="Vivekanand Mandal">
         </div>
-        <h3>Utkarsh Dal</h3>
+        <h3>Vivekanand Mandal</h3>
         <p class="player-count">
-            <span id="utkarsh-count">0</span> Players 👥
+            <span id="vivekanand-count">0</span> Players 👥
         </p>
     </div>
 
-    <!-- Rakshak Dal -->
+    <!-- Rakshak Mandal -->
     <div class="department-card">
         <div class="icon-wrapper">
-            <img src="rakshak dal.jpg" alt="Rakshak Dal">
+            <img src="Rakshak mandal.jpg" alt="Rakshak Mandal">
         </div>
-        <h3>Rakshak Dal</h3>
+        <h3>Rakshak Mandal</h3>
         <p class="player-count">
             <span id="rakshak-count">0</span> Players 👥
         </p>
     </div>
 
-    <!-- Shaurya Dal -->
+    <!-- Shaurya Mandal -->
     <div class="department-card">
         <div class="icon-wrapper">
-            <img src="Shaurya dal.jpg" alt="Shaurya Dal">
+            <img src="Shaurya mandal.jpg" alt="Shaurya Mandal">
         </div>
-        <h3>Shaurya Dal</h3>
+        <h3>Shaurya Mandal</h3>
         <p class="player-count">
             <span id="shaurya-count">0</span> Players 👥
         </p>
     </div>
 </div>
-</section>
+</div>
 
 <div class="sports-section">
     <div class="sports-header">
@@ -473,7 +462,7 @@
     <div class="players">
 
       <div class="player">
-        <img src="Adarsh dal.jpg" alt="Aarav Sharma">
+        <img src="Adarsh mandal.jpg" alt="Aarav Sharma">
         <span class="badge orange"><i class="ri-football-line"></i>Top Scorer</span>
         <h3>Aarav Sharma</h3>
         <p>Digital Marketing</p>
@@ -481,7 +470,7 @@
       </div>
 
       <div class="player">
-        <img src="Sankalp dal.jpg" alt="Meera Singh">
+        <img src="Sankalp mandal.jpg" alt="Meera Singh">
         <span class="badge purple"><i class="ri-award-fill"></i>Player of the Match</span>
         <h3>Meera Singh</h3>
         <p>Psychology</p>
@@ -560,10 +549,10 @@
         </div>
         <div class="footer-box">
             <h3>Quick Links</h3>
-            <a href="#">Home</a>
-            <a href="#">Gallery</a>
-            <a href="#">Leaderboard</a>
-            <a href="#">Dals</a>
+            <a href="index.html">Home</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="mandals.html">Mandals</a>
         </div>
         <div class="footer-box">
             <h3>Contact</h3>
@@ -812,6 +801,8 @@ topBtn.addEventListener("click", () => {
 });
 </script>
 
+<!-- Load Socket.IO Client dynamically -->
+<script src="/socket.io/socket.io.js"></script>
 <script>
 const SHEET_URL =
 "https://opensheet.elk.sh/1wko8nor4TPBssNGKIK5283AJ-zZ-Yj394v4ZcUFXjRU/Sheet1";
@@ -823,45 +814,32 @@ async function updateDalCounts() {
 
         // Reset counts
         const counts = {
-            "adarsh dal": 0,
-            "sankalp dal": 0,
-            "chanakya dal": 0,
-            "vijay dal": 0,
-            "utkarsh dal": 0,
-            "rakshak dal": 0,
-            "shaurya dal": 0
+            "adarsh mandal": 0,
+            "sankalp mandal": 0,
+            "chanakya mandal": 0,
+            "vijay mandal": 0,
+            "utkarsh mandal": 0,
+            "rakshak mandal": 0,
+            "shaurya mandal": 0
         };
 
         // Count players from sheet
         data.forEach(row => {
-            const dal = row["Dal"]?.trim().toLowerCase();
+            const mandal = row["Mandal"]?.trim().toLowerCase();
 
-            if (counts.hasOwnProperty(dal)) {
-                counts[dal]++;
+            if (counts.hasOwnProperty(mandal)) {
+                counts[mandal]++;
             }
         });
 
         // Update UI
-        document.getElementById("adarsh-count").textContent =
-            counts["adarsh dal"];
-
-        document.getElementById("sankalp-count").textContent =
-            counts["sankalp dal"];
-
-        document.getElementById("chanakya-count").textContent =
-            counts["chanakya dal"];
-
-        document.getElementById("vijay-count").textContent =
-            counts["vijay dal"];
-
-        document.getElementById("utkarsh-count").textContent =
-            counts["utkarsh dal"];
-
-        document.getElementById("rakshak-count").textContent =
-            counts["rakshak dal"];
-
-        document.getElementById("shaurya-count").textContent =
-            counts["shaurya dal"];
+        document.getElementById("adarsh-count").textContent = counts["adarsh mandal"];
+        document.getElementById("sankalp-count").textContent = counts["sankalp mandal"];
+        document.getElementById("chanakya-count").textContent = counts["chanakya mandal"];
+        document.getElementById("vijay-count").textContent = counts["vijay mandal"];
+        document.getElementById("utkarsh-count").textContent = counts["utkarsh mandal"];
+        document.getElementById("rakshak-count").textContent = counts["rakshak mandal"];
+        document.getElementById("shaurya-count").textContent = counts["shaurya mandal"];
 
     } catch (error) {
         console.error("Error:", error);
@@ -870,9 +848,636 @@ async function updateDalCounts() {
 
 // Load instantly
 updateDalCounts();
-
 // Refresh every 5 seconds
 setInterval(updateDalCounts, 5000);
+
+// ── Realtime Scoring & Leaderboard integration ────────────────────────────────
+let socket = null;
+try {
+    socket = io();
+} catch (e) {
+    console.warn("Socket.IO client not loaded or offline");
+}
+
+let allMatches = [];
+let allDals = [];
+
+// Format milliseconds timer
+function formatMatchTime(seconds) {
+  const m = Math.floor(seconds / 60).toString().padStart(2, "0");
+  const s = (seconds % 60).toString().padStart(2, "0");
+  return `${m}:${s}`;
+}
+
+async function fetchWebsiteData() {
+  try {
+    // Fetch Mandals
+    const dalsRes = await fetch("/api/mandals");
+    allDals = await dalsRes.json();
+    
+    // Fetch Matches
+    const matchesRes = await fetch("/api/matches");
+    allMatches = await matchesRes.json();
+    
+    renderRealtimeSections();
+  } catch (error) {
+    console.error("Error loading realtime data:", error);
+  }
+}
+
+function renderRealtimeSections() {
+  const liveCard = document.getElementById("live-score");
+  if (!liveCard) return;
+
+  const liveMatches = allMatches.filter(m => m.status === "live");
+  if (liveMatches.length > 0) {
+    const m = liveMatches[0];
+    const liveTime = () => {
+      let sec = m.elapsedSeconds;
+      if (m.timerRunning && m.timerStartedAt) {
+        sec += Math.max(0, Math.floor((Date.now() - new Date(m.timerStartedAt).getTime()) / 1000));
+      }
+      return formatMatchTime(sec);
+    };
+
+    liveCard.innerHTML = `
+        <div class="live-top">
+            <div class="card-title white">
+                <i class="ri-broadcast-line"></i>
+                <h3>LIVE MATCH</h3>
+            </div>
+            <span class="live-badge">LIVE</span>
+        </div>
+        <div class="live-sport">
+            ${m.sportName} • ${m.tournamentName}
+        </div>
+        <div class="live-score-area">
+            <div class="team">
+                <img src="${m.dalA.logoUrl}" onerror="this.src='Adarsh mandal.jpg'">
+                <p>${m.dalA.name}</p>
+            </div>
+            <div class="score">
+                ${m.scoreA} : ${m.scoreB}
+            </div>
+            <div class="team">
+                <img src="${m.dalB.logoUrl}" onerror="this.src='Sankalp mandal.jpg'">
+                <p>${m.dalB.name}</p>
+            </div>
+        </div>
+        ${m.sportName.toLowerCase().includes("cricket") && m.overs ? `
+        <div style="text-align: center; font-size: 13px; color: rgba(255,255,255,0.8); margin-top: -5px; margin-bottom: 10px;">
+          Overs: ${m.overs} | Wickets: ${m.wickets}
+        </div>
+        ` : ""}
+        <div class="live-footer" id="liveMatchTimer">
+            🟢 Match In Progress • ${liveTime()} (${m.venue})
+        </div>
+        <button class="watch-btn" onclick="window.location.href='match-details.html?id=${m.id}'">
+            Watch Live Score
+        </button>
+    `;
+
+    // Start local timer tick
+    if (window.liveTimerInterval) clearInterval(window.liveTimerInterval);
+    window.liveTimerInterval = setInterval(() => {
+      const timerFooter = document.getElementById("liveMatchTimer");
+      if (timerFooter) {
+        timerFooter.innerHTML = `🟢 Match In Progress • ${liveTime()} (${m.venue})`;
+      }
+    }, 1000);
+
+  } else {
+    // No live matches, show placeholder in the live match card
+    liveCard.innerHTML = `
+        <div class="live-top">
+            <div class="card-title white">
+                <i class="ri-broadcast-line"></i>
+                <h3>LIVE MATCH</h3>
+            </div>
+            <span class="live-badge" style="background-color: var(--text-muted); color: white; padding: 2px 8px; border-radius: 4px; font-weight: 700;">OFFLINE</span>
+        </div>
+        <div class="live-score-area" style="padding: 2.5rem 0; text-align: center; font-weight: 600; color: var(--text-muted);">
+            No Live Matches at this time.
+        </div>
+        <button class="watch-btn" onclick="window.location.href='results.html'">
+            Browse Match Schedules
+        </button>
+    `;
+  }
+
+  // 2. Upcoming Match Card
+  const upcomingCard = document.getElementById("event-card");
+  const upcomingMatches = allMatches.filter(m => m.status === "scheduled" || m.status === "upcoming");
+  if (upcomingMatches.length > 0) {
+    const m = upcomingMatches[0];
+    upcomingCard.innerHTML = `
+        <div class="card-title">
+            <i class="ri-calendar-event-line"></i>
+            <h3>UPCOMING MATCH</h3>
+        </div>
+        <div class="match-time">
+            <span>${new Date(m.createdAt).toLocaleDateString()}</span>
+            <span>${m.venue}</span>
+        </div>
+        <div class="teams">
+            <div class="team">
+                <img src="${m.dalA.logoUrl}" onerror="this.src='Adarsh mandal.jpg'">
+                <p>${m.dalA.name}</p>
+            </div>
+            <div class="vs">VS</div>
+            <div class="team">
+                <img src="${m.dalB.logoUrl}" onerror="this.src='Sankalp mandal.jpg'">
+                <p>${m.dalB.name}</p>
+            </div>
+        </div>
+        <div class="match-info">
+            ${m.sportName} • Duration: ${m.durationMinutes} Mins
+        </div>
+        <button class="schedule-btn" onclick="window.location.href='schedule.html'">
+            View Full Schedule →
+        </button>
+    `;
+  }
+
+  // 3. Latest Results List
+  const resultsList = document.getElementById("results-list");
+  resultsList.innerHTML = "";
+  const completedMatches = allMatches.filter(m => m.status === "completed").slice(0, 3);
+  if (completedMatches.length === 0) {
+    resultsList.innerHTML = `<div style="text-align: center; color: var(--text-muted); padding: 20px;">No match results yet</div>`;
+  } else {
+    completedMatches.forEach((m) => {
+      const item = document.createElement("div");
+      item.className = "result-item";
+      item.style.cursor = "pointer";
+      item.onclick = () => window.location.href = `match-details.html?id=${m.id}`;
+      item.innerHTML = `
+        <div>
+            <h4>${m.dalA.name} vs ${m.dalB.name}</h4>
+            <p>${m.sportName} • ${m.venue}</p>
+        </div>
+        <span class="result-score green" style="padding: 4px 10px; border-radius: 6px; font-weight: 700;">
+            ${m.scoreA}-${m.scoreB}
+        </span>
+      `;
+      resultsList.appendChild(item);
+    });
+  }
+
+  // 4. Dynamic Leaderboard calculations
+  const leaderboardTable = document.querySelector(".leaderboard-card .leaderboard");
+  if (leaderboardTable) {
+    const finishedMatches = allMatches.filter(m => m.status === "completed");
+    const dalMap = new Map();
+    allDals.forEach(d => {
+      dalMap.set(d.id, { name: d.name, wins: 0, losses: 0, draws: 0, points: 0 });
+    });
+
+    finishedMatches.forEach(m => {
+      if (!dalMap.has(m.dalAId)) dalMap.set(m.dalAId, { name: m.dalA.name, wins: 0, losses: 0, draws: 0, points: 0 });
+      if (!dalMap.has(m.dalBId)) dalMap.set(m.dalBId, { name: m.dalB.name, wins: 0, losses: 0, draws: 0, points: 0 });
+
+      const a = dalMap.get(m.dalAId);
+      const b = dalMap.get(m.dalBId);
+
+      if (m.scoreA > m.scoreB) {
+        a.wins++;
+        a.points += 3;
+        b.losses++;
+      } else if (m.scoreB > m.scoreA) {
+        b.wins++;
+        b.points += 3;
+        a.losses++;
+      } else {
+        a.draws++;
+        a.points += 1;
+        b.draws++;
+        b.points += 1;
+      }
+    });
+
+    const sortedDals = Array.from(dalMap.entries())
+      .map(([id, stats]) => ({ id, ...stats }))
+      .sort((x, y) => y.points - x.points || y.wins - x.wins);
+
+    let html = `
+      <div class="leaderboard-head">
+        <span>Rank</span>
+        <span>Team</span>
+        <span>Record</span>
+        <span>Pts</span>
+      </div>
+    `;
+
+    sortedDals.slice(0, 4).forEach((d, index) => {
+      const medalClass = index === 0 ? "ri-medal-fill" : (index < 3 ? "ri-medal-line" : "ri-shield-star-line");
+      const rankNum = index + 1;
+      html += `
+        <div class="row ${index === 0 ? 'top' : ''}">
+          <span class="rank"><i class="${medalClass}"></i>${rankNum}</span>
+          <span class="leaderboard-team">${d.name}</span>
+          <span class="stats">${d.wins}W - ${d.losses}L</span>
+          <span class="points"><i class="ri-star-fill"></i>${d.points}</span>
+        </div>
+      `;
+    });
+    
+    leaderboardTable.innerHTML = html;
+  }
+  // 5. Top Performers
+  const performersList = document.querySelector(".performers-card .players");
+  if (performersList) {
+    const finishedMatches = allMatches.filter(m => m.status === "completed");
+    const performerMap = new Map();
+
+    finishedMatches.forEach(m => {
+      const ensureDal = (dalId, mandal) => {
+        if (!performerMap.has(dalId)) {
+          performerMap.set(dalId, {
+            id: dalId,
+            name: mandal?.name || `Mandal ${dalId}`,
+            logo: mandal?.logoUrl || mandal?.logo || "DSSPL_LOGO.png",
+            wins: 0,
+            pointsFor: 0,
+            matches: 0,
+          });
+        }
+        return performerMap.get(dalId);
+      };
+
+      const a = ensureDal(m.dalAId, m.dalA);
+      const b = ensureDal(m.dalBId, m.dalB);
+      a.matches += 1;
+      b.matches += 1;
+      a.pointsFor += Number(m.scoreA) || 0;
+      b.pointsFor += Number(m.scoreB) || 0;
+
+      if ((Number(m.scoreA) || 0) > (Number(m.scoreB) || 0)) a.wins += 1;
+      if ((Number(m.scoreB) || 0) > (Number(m.scoreA) || 0)) b.wins += 1;
+    });
+
+    const performers = Array.from(performerMap.values())
+      .sort((a, b) => b.wins - a.wins || b.pointsFor - a.pointsFor)
+      .slice(0, 2);
+
+    if (performers.length === 0) {
+      performersList.innerHTML = `<div style="text-align:center;color:var(--text-muted);padding:24px;width:100%;">No top performers yet</div>`;
+    } else {
+      performersList.innerHTML = performers.map((p, index) => `
+        <div class="player">
+          <img src="${p.logo}" alt="${p.name}" onerror="this.src='DSSPL_LOGO.png'">
+          <span class="badge ${index === 0 ? 'orange' : 'purple'}"><i class="${index === 0 ? 'ri-trophy-fill' : 'ri-award-fill'}"></i>${index === 0 ? 'Top Mandal' : 'Strong Performer'}</span>
+          <h3>${p.name}</h3>
+          <p>${p.matches} Matches Played</p>
+          <b><i class="ri-bar-chart-fill"></i>${p.wins} Wins &bull; ${p.pointsFor} Points</b>
+        </div>
+      `).join("");
+    }
+  }
+}
+
+// Attach redirect buttons
+const viewFullLeaderboardBtn = document.querySelector(".leaderboard-card .btn");
+if (viewFullLeaderboardBtn) {
+  viewFullLeaderboardBtn.onclick = () => window.location.href = "leaderboard.html";
+}
+
+// Initial fetch
+fetchWebsiteData();
+setInterval(fetchWebsiteData, 5000);
+
+// Socket Update Listener
+if (socket) {
+  socket.on("matchUpdate", (updatedMatch) => {
+    console.log("Realtime match update received:", updatedMatch);
+    // Find and update match
+    const idx = allMatches.findIndex(m => m.id.toString() == updatedMatch.id.toString());
+    if (idx !== -1) {
+      allMatches[idx] = updatedMatch;
+    } else {
+      allMatches.unshift(updatedMatch);
+    }
+    renderRealtimeSections();
+  });
+  
+  socket.on("matchDelete", (matchId) => {
+    console.log("Match delete event received:", matchId);
+    allMatches = allMatches.filter(m => m.id.toString() != matchId.toString());
+    renderRealtimeSections();
+  });
+}
+</script>
+
+<!-- ============= Registration Popup Modal ============= -->
+<div class="register-popup-overlay" id="registerPopup">
+    <div class="register-popup-card">
+        <button class="popup-close-btn" onclick="closeRegisterPopup()">&times;</button>
+        <div class="popup-icon-circle">
+            <i class="ri-trophy-fill"></i>
+        </div>
+        <h2>DSSPL 2026</h2>
+        <p class="popup-subtitle">Dev Sanskriti Sports Premier League</p>
+        <div class="popup-divider"></div>
+        <div class="popup-info-grid">
+            <div class="popup-info-item">
+                <i class="ri-calendar-event-fill"></i>
+                <div>
+                    <span class="popup-label">Event Date</span>
+                    <span class="popup-value">July - August 2026</span>
+                </div>
+            </div>
+            <div class="popup-info-item">
+                <i class="ri-map-pin-fill"></i>
+                <div>
+                    <span class="popup-label">Venue</span>
+                    <span class="popup-value">DSVV Campus, Haridwar</span>
+                </div>
+            </div>
+            <div class="popup-info-item">
+                <i class="ri-football-fill"></i>
+                <div>
+                    <span class="popup-label">Sports</span>
+                    <span class="popup-value">10+ Categories</span>
+                </div>
+            </div>
+            <div class="popup-info-item">
+                <i class="ri-team-fill"></i>
+                <div>
+                    <span class="popup-label">Teams</span>
+                    <span class="popup-value">7 Mandals Competing</span>
+                </div>
+            </div>
+        </div>
+        <p class="popup-message">Register now to represent your Mandal and compete for glory!</p>
+        <button class="popup-register-btn" onclick="redirectToRegistration()">
+            <i class="ri-arrow-right-up-line"></i> Proceed to Registration
+        </button>
+        <p class="popup-footer-note">You will be redirected to the official registration portal</p>
+    </div>
+</div>
+
+<style>
+/* ============= Registration Popup Styles ============= */
+.register-popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 15, 40, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    animation: popupFadeIn 0.3s ease;
+}
+
+.register-popup-overlay.active {
+    display: flex;
+}
+
+@keyframes popupFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes popupSlideUp {
+    from { transform: translateY(40px) scale(0.95); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.register-popup-card {
+    background: var(--surface-color, #ffffff);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: 28px;
+    padding: 40px 36px 30px;
+    width: 90%;
+    max-width: 440px;
+    text-align: center;
+    position: relative;
+    animation: popupSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+}
+
+.popup-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--text-muted, #888);
+    cursor: pointer;
+    transition: all 0.2s;
+    line-height: 1;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-close-btn:hover {
+    background: rgba(0,0,0,0.08);
+    color: var(--text-color, #333);
+    transform: rotate(90deg);
+}
+
+.popup-icon-circle {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffbc01, #ff8400);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+    box-shadow: 0 8px 25px rgba(255, 132, 0, 0.35);
+    animation: popupPulse 2s ease-in-out infinite;
+}
+
+@keyframes popupPulse {
+    0%, 100% { box-shadow: 0 8px 25px rgba(255, 132, 0, 0.35); }
+    50% { box-shadow: 0 8px 35px rgba(255, 132, 0, 0.55); }
+}
+
+.popup-icon-circle i {
+    font-size: 34px;
+    color: #003E8A;
+}
+
+.register-popup-card h2 {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--heading-color, #0b1a30);
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+}
+
+.popup-subtitle {
+    font-size: 13px;
+    color: var(--text-muted, #64748b);
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.popup-divider {
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #ffbc01, #ff8400);
+    border-radius: 10px;
+    margin: 0 auto 20px;
+}
+
+.popup-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.popup-info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface-alt, #f7f9ff);
+    border: 1px solid var(--border-light, #eef2f5);
+    border-radius: 14px;
+    padding: 10px 12px;
+    transition: all 0.25s;
+}
+
+.popup-info-item:hover {
+    border-color: rgba(255, 188, 1, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.popup-info-item i {
+    font-size: 22px;
+    color: #ff8400;
+    flex-shrink: 0;
+}
+
+.popup-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted, #888);
+    letter-spacing: 0.5px;
+}
+
+.popup-value {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--heading-color, #0b1a30);
+}
+
+.popup-message {
+    font-size: 14px;
+    color: var(--text-muted, #64748b);
+    margin-bottom: 18px;
+    line-height: 1.5;
+}
+
+.popup-register-btn {
+    width: 100%;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #003E8A, #001944);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    letter-spacing: 0.5px;
+}
+
+.popup-register-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 62, 138, 0.4);
+    background: linear-gradient(135deg, #004db3, #002866);
+}
+
+.popup-register-btn:active {
+    transform: translateY(0);
+}
+
+.popup-register-btn i {
+    font-size: 20px;
+    transition: transform 0.3s;
+}
+
+.popup-register-btn:hover i {
+    transform: translate(3px, -3px);
+}
+
+.popup-footer-note {
+    font-size: 11px;
+    color: var(--text-muted, #aaa);
+    margin-top: 12px;
+}
+
+@media (max-width: 480px) {
+    .register-popup-card {
+        padding: 30px 22px 24px;
+        border-radius: 22px;
+    }
+
+    .popup-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .popup-icon-circle {
+        width: 60px;
+        height: 60px;
+    }
+
+    .popup-icon-circle i {
+        font-size: 28px;
+    }
+
+    .register-popup-card h2 {
+        font-size: 22px;
+    }
+}
+</style>
+
+<script>
+// ============= Registration Popup Functions =============
+function showRegisterPopup() {
+    const popup = document.getElementById('registerPopup');
+    popup.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeRegisterPopup() {
+    const popup = document.getElementById('registerPopup');
+    popup.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function redirectToRegistration() {
+    window.open('https://dsspl-registration.netlify.app/', '_blank');
+    closeRegisterPopup();
+}
+
+// Close popup on overlay click
+document.getElementById('registerPopup').addEventListener('click', function(e) {
+    if (e.target === this) closeRegisterPopup();
+});
+
+// Close popup on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeRegisterPopup();
+});
 </script>
 </body>
 </html>

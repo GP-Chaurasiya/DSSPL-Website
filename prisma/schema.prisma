@@ -1,0 +1,86 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           Int        @id @default(autoincrement())
+  username     String     @unique
+  passwordHash String
+  role         String     // "SUPER_ADMIN", "MEDIA_TEAM", "CREATOR_TEAM", "ORGANISER_TEAM"
+  createdAt    DateTime   @default(now())
+  posts        NewsPost[]
+}
+
+model Mandal {
+  id           Int        @id @default(autoincrement())
+  name         String     @unique
+  color        String
+  abbreviation String
+  logoUrl      String
+  players      Player[]
+  matchesA     Match[]    @relation("DalA")
+  matchesB     Match[]    @relation("DalB")
+}
+
+model Player {
+  id        Int      @id @default(autoincrement())
+  name      String
+  dalId     Int
+  mandal       Mandal      @relation(fields: [dalId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Match {
+  id               Int       @id @default(autoincrement())
+  sportId          Int
+  sportName        String
+  status           String    @default("scheduled") // "scheduled", "live", "completed", "paused"
+  venue            String
+  startTime        DateTime?
+  endTime          DateTime?
+  durationMinutes  Int       @default(60)
+  elapsedSeconds   Int       @default(0)
+  timerRunning     Boolean   @default(false)
+  timerStartedAt   DateTime?
+  scoreA           Int       @default(0)
+  scoreB           Int       @default(0)
+  dalAId           Int
+  dalA             Mandal       @relation("DalA", fields: [dalAId], references: [id])
+  dalBId           Int
+  dalB             Mandal       @relation("DalB", fields: [dalBId], references: [id])
+  
+  // Realtime cricket / detailed scoring fields
+  overs            Float     @default(0.0)
+  wickets          Int       @default(0)
+  currentBatsman   String    @default("")
+  currentBowler    String    @default("")
+  runRate          Float     @default(0.0)
+  tournamentName   String    @default("DSSPL 2026")
+  result           String    @default("")
+  matchBanner      String    @default("")
+  
+  createdAt        DateTime  @default(now())
+}
+
+model Media {
+  id        Int      @id @default(autoincrement())
+  type      String   // "IMAGE", "VIDEO"
+  url       String
+  title     String?
+  createdAt DateTime @default(now())
+}
+
+model NewsPost {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  authorId  Int
+  author    User     @relation(fields: [authorId], references: [id])
+  createdAt DateTime @default(now())
+}

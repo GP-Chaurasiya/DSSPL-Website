@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSSPL - Tournament Schedule & Fixtures</title>
+  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <style>
+    .schedule-viewport {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      min-height: 70vh;
+    }
+
+    .viewport-header {
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    .viewport-header h2 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--text-main, #0f172a);
+      margin-bottom: 8px;
+    }
+
+    .viewport-header p {
+      color: var(--text-muted, #64748b);
+      font-size: 16px;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      background-color: var(--surface-color);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .search-wrapper-custom {
+      flex: 1;
+      min-width: 250px;
+      position: relative;
+    }
+
+    .search-wrapper-custom input {
+      width: 100%;
+      padding: 10px 16px 10px 40px;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .search-wrapper-custom input:focus {
+      border-color: var(--primary-color);
+    }
+
+    .search-wrapper-custom i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+
+    .select-wrapper {
+      min-width: 180px;
+    }
+
+    .select-wrapper select {
+      width: 100%;
+      padding: 10px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 16px;
+    }
+
+    .select-wrapper select:focus {
+      border-color: var(--primary-color);
+    }
+
+    .reset-btn {
+      padding: 10px 20px;
+      border: 1px solid var(--border-color);
+      background-color: transparent;
+      color: var(--text-color);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .reset-btn:hover {
+      background-color: var(--border-light);
+    }
+
+    /* Schedule List */
+    .matches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <img src="DSSPL_LOGO.png" alt="DSSPL Logo" class="logo">
+      <div class="logo-flip">
+        <div class="logo-inner">
+          <div class="logo-front">
+            <img src="dsvv Logo .png" alt="Front Logo">
+          </div>
+          <div class="logo-back">
+            <img src="DSSPL-logo.png" alt="Back Logo">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-right">
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode" id="themeBtn">
+        <i class="ri-moon-line"></i>
+      </button>
+      <a href="https://dsspl-registration.netlify.app/" target="_blank" onclick="event.preventDefault(); showRegisterPopup();">
+        <button class="register-btn">Register Now</button>
+      </a>
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html"><i class="ri-home-5-line"></i> Home</a></li>
+      <li><a href="mandals.html"><i class="ri-team-line"></i> Mandals</a></li>
+      <li><a href="sports.html"><i class="ri-football-line"></i> Sports</a></li>
+      <li><a href="schedule.html" class="active"><i class="ri-calendar-event-line"></i> Schedule</a></li>
+      <li><a href="results.html"><i class="ri-broadcast-line"></i> Live Score</a></li>
+      <li><a href="leaderboard.html"><i class="ri-trophy-line"></i> Leaderboard</a></li>
+      <li><a href="gallery.html"><i class="ri-image-line"></i> Gallery</a></li>
+      <li><a href="about.html"><i class="ri-information-line"></i> About</a></li>
+    </ul>
+  </nav>
+
+  <div class="schedule-viewport">
+    <div class="viewport-header">
+      <h2>Fixtures & Schedules</h2>
+      <p>Browse full tournament fixtures. Filter matches by sports categories or specific Mandals to find schedules.</p>
+    </div>
+
+    <!-- Filters -->
+    <div class="filter-bar">
+      <div class="search-wrapper-custom">
+        <i class="ri-search-line"></i>
+        <input type="text" id="searchInput" placeholder="Search team, sport, or venue...">
+      </div>
+
+      <div class="select-wrapper">
+        <select id="sportFilter">
+          <option value="">All Sports</option>
+          <!-- Dynamic sports list options -->
+        </select>
+      </div>
+
+      <div class="select-wrapper">
+        <select id="dalFilter">
+          <option value="">All Mandals</option>
+          <!-- Dynamic mandals list options -->
+        </select>
+      </div>
+
+      <button class="reset-btn" onclick="resetFilters()"><i class="ri-refresh-line"></i> Reset Filters</button>
+    </div>
+
+    <!-- Fixtures Grid -->
+    <div class="matches-grid" id="scheduleContainer">
+      <div style="grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 40px;">
+        <i class="ri-loader-3-line" style="font-size: 30px; display: inline-block; animation: spin 1s infinite linear;"></i>
+        <p style="margin-top: 10px;">Loading fixtures schedule...</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-box">
+        <h3>About Us</h3>
+        <p>Dev Sanskriti Vishwavidyalaya, Haridwar - 249411</p>
+      </div>
+      <div class="footer-box">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a href="mandals.html">Mandals</a>
+      </div>
+      <div class="footer-box">
+        <h3>Contact</h3>
+        <p>Email: dsvv.ac.in</p>
+        <p>Phone: +91 00000 00000</p>
+      </div>
+      <div class="footer-box">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © DSSPL-2026 | All Rights Reserved
+    </div>
+  </footer>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const SPORTS = [
+      { id: 1, name: "Basketball", icon: "🏀" },
+      { id: 2, name: "Football", icon: "⚽" },
+      { id: 3, name: "Cricket", icon: "🏏" },
+      { id: 4, name: "Volleyball", icon: "🏐" },
+      { id: 5, name: "Badminton", icon: "🏸" },
+      { id: 6, name: "Table Tennis", icon: "🏓" },
+      { id: 7, name: "Athletics (100m)", icon: "🏃" },
+      { id: 8, name: "Athletics (400m)", icon: "🏃" },
+      { id: 9, name: "Athletics (Relay)", icon: "🔁" },
+      { id: 10, name: "Kho-Kho", icon: "🤸" },
+      { id: 11, name: "Chess", icon: "♟️" },
+      { id: 12, name: "Carrom", icon: "🎯" },
+      { id: 13, name: "Tug of War", icon: "💪" },
+      { id: 14, name: "Long Jump", icon: "🦘" },
+      { id: 15, name: "Javelin Throw", icon: "🎿" },
+      { id: 16, name: "Discus Throw", icon: "🥏" },
+      { id: 17, name: "Shot Put", icon: "⚫" }
+    ];
+
+    let allMatches = [];
+    let allDals = [];
+
+    // Theme Switch
+    const themeBtn = document.getElementById("themeBtn");
+    const applyTheme = (theme) => {
+      document.body.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      const icon = themeBtn.querySelector('i');
+      if (icon) icon.className = theme === 'light' ? 'ri-moon-line' : 'ri-sun-line';
+    };
+    applyTheme(localStorage.getItem('theme') || 'light');
+    themeBtn.addEventListener('click', () => {
+      const current = document.body.getAttribute('data-theme') || 'light';
+      applyTheme(current === 'light' ? 'dark' : 'light');
+    });
+
+    const socket = io();
+
+    async function loadData() {
+      try {
+        // Load Mandals
+        const dalsRes = await fetch("/api/mandals");
+        allDals = await dalsRes.json();
+        
+        // Populate Mandals selector
+        const dalSelect = document.getElementById("dalFilter");
+        allDals.forEach(d => {
+          const opt = document.createElement("option");
+          opt.value = d.id;
+          opt.textContent = d.name;
+          dalSelect.appendChild(opt);
+        });
+
+        // Populate Sports selector
+        const sportSelect = document.getElementById("sportFilter");
+        SPORTS.forEach(s => {
+          const opt = document.createElement("option");
+          opt.value = s.id;
+          opt.textContent = `${s.icon} ${s.name}`;
+          sportSelect.appendChild(opt);
+        });
+
+        // Load Matches
+        const matchesRes = await fetch("/api/matches");
+        allMatches = await matchesRes.json();
+
+        renderSchedule();
+      } catch (err) {
+        document.getElementById("scheduleContainer").innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: var(--danger); padding: 40px; font-weight: 600;">Failed to load schedule database.</div>`;
+      }
+    }
+
+    function renderSchedule() {
+      const container = document.getElementById("scheduleContainer");
+      container.innerHTML = "";
+
+      const query = document.getElementById("searchInput").value.trim().toLowerCase();
+      const sportFilter = document.getElementById("sportFilter").value;
+      const dalFilter = document.getElementById("dalFilter").value;
+
+      // Filter matches (typically scheduled, but we show upcoming/live as well, prioritized)
+      const filtered = allMatches.filter((m) => {
+        // Matches matching query
+        const matchesSearch = m.sportName.toLowerCase().includes(query) || 
+                              m.venue.toLowerCase().includes(query) ||
+                              m.dalA.name.toLowerCase().includes(query) ||
+                              m.dalB.name.toLowerCase().includes(query);
+        
+        // Matches matching sport select
+        const matchesSport = !sportFilter || m.sportId == sportFilter;
+
+        // Matches matching mandal select
+        const matchesDal = !dalFilter || m.dalAId == dalFilter || m.dalBId == dalFilter;
+
+        return matchesSearch && matchesSport && matchesDal;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 50px;">No scheduled fixtures match your criteria.</div>`;
+        return;
+      }
+
+      filtered.forEach((m) => {
+        const card = document.createElement("div");
+        card.className = "match-card-item";
+
+        let statusText = m.status;
+        if (m.status === "live") statusText = "Live";
+        if (m.status === "completed") statusText = "Finished";
+        if (m.status === "scheduled") statusText = "Upcoming";
+
+        let footerText = `<i class="ri-map-pin-line"></i> ${m.venue}`;
+        if (m.status === "live") {
+          let sec = m.elapsedSeconds;
+          if (m.timerRunning && m.timerStartedAt) {
+            sec += Math.max(0, Math.floor((Date.now() - new Date(m.timerStartedAt).getTime()) / 1000));
+          }
+          const min = Math.floor(sec / 60).toString().padStart(2, "0");
+          const s = (sec % 60).toString().padStart(2, "0");
+          footerText = `<i class="ri-time-line"></i> In Progress: ${min}:${s} (${m.venue})`;
+        } else if (m.status === "scheduled") {
+          footerText = `<i class="ri-calendar-line"></i> Scheduled (${m.venue})`;
+        }
+
+        card.innerHTML = `
+          <div>
+            <div class="card-top-row">
+              <span class="sport-tag">${m.sportName}</span>
+              <span class="status-badge status-${m.status}">${statusText}</span>
+            </div>
+            
+            <div class="matchup-row">
+              <div class="team-block">
+                <img src="${m.dalA.logoUrl}" onerror="this.src='Adarsh mandal.jpg'">
+                <p>${m.dalA.name}</p>
+              </div>
+              
+              <div class="score-block">
+                ${m.status === "scheduled" ? "VS" : `${m.scoreA} - ${m.scoreB}`}
+              </div>
+              
+              <div class="team-block">
+                <img src="${m.dalB.logoUrl}" onerror="this.src='Sankalp mandal.jpg'">
+                <p>${m.dalB.name}</p>
+              </div>
+            </div>
+            ${m.sportName.toLowerCase().includes("cricket") && m.overs && m.status === "live" ? `
+            <div style="text-align: center; font-size: 13px; color: #64748b; margin-top: -10px; margin-bottom: 10px;">
+              Overs: ${m.overs} | Wickets: ${m.wickets}
+            </div>
+            ` : ""}
+          </div>
+          
+          <div class="card-footer-row">
+            <span>${footerText}</span>
+            <a href="match-details.html?id=${m.id}" class="btn-action">Scorecard</a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function resetFilters() {
+      document.getElementById("searchInput").value = "";
+      document.getElementById("sportFilter").value = "";
+      document.getElementById("dalFilter").value = "";
+      renderSchedule();
+    }
+
+    // Attach listeners
+    document.getElementById("searchInput").addEventListener("input", renderSchedule);
+    document.getElementById("sportFilter").addEventListener("change", renderSchedule);
+    document.getElementById("dalFilter").addEventListener("change", renderSchedule);
+
+    // Socket listeners
+    socket.on("matchUpdate", (match) => {
+      const idx = allMatches.findIndex(m => m.id.toString() == match.id.toString());
+      if (idx !== -1) {
+        allMatches[idx] = match;
+      } else {
+        allMatches.unshift(match);
+      }
+      renderSchedule();
+    });
+
+    socket.on("matchDelete", (matchId) => {
+      allMatches = allMatches.filter(m => m.id.toString() != matchId.toString());
+      renderSchedule();
+    });
+
+    loadData();
+  </script>
+<script src="register-popup.js"></script>
+</body>
+</html>
